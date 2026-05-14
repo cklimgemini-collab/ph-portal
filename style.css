@@ -1,0 +1,136 @@
+/* style.css */
+/* ==========================================
+    1. 全局深空背景
+========================================== */
+html, body {
+    margin: 0; padding: 0;
+    background-color: #000000; 
+    font-family: 'Outfit', 'PingFang SC', sans-serif;
+    color: #e2e8f0;
+    overflow: hidden;
+    width: 100%; height: 100%;
+    overscroll-behavior-y: none;
+}
+
+#universe-canvas {
+    position: fixed; z-index: 1;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw; height: 100vh;
+    cursor: grab;
+}
+#universe-canvas:active { cursor: grabbing; }
+
+.glow-overlay {
+    position: fixed; z-index: 2;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle at 50% 40%, rgba(255, 200, 100, 0.05) 0%, rgba(0,0,0,0) 70%);
+    pointer-events: none; 
+}
+
+/* ==========================================
+    2. HUD 全息行星标牌
+========================================== */
+#labels-container {
+    position: fixed; z-index: 5;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none;
+}
+
+.planet-label {
+    position: absolute; transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 11px; 
+    font-weight: 500; letter-spacing: 2px;
+    text-align: center; opacity: 0;
+    transition: opacity 0.3s ease, transform 0.1s ease;
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.9);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.6);
+    padding-bottom: 4px; white-space: nowrap;
+}
+
+/* ==========================================
+    3. 响应式科幻指挥舱 UI 布局
+========================================== */
+.ui-layer {
+    position: relative; z-index: 10;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; justify-content: space-between; 
+    box-sizing: border-box; pointer-events: none; 
+    padding: 6vh 4% 5vh 4%;
+}
+
+.top-header { display: flex; flex-direction: column; align-items: center; pointer-events: auto; }
+.portal-logo { width: 130px; height: auto; filter: drop-shadow(0 4px 15px rgba(0,0,0,0.8)); }
+p.subtitle {
+    color: #94a3b8; margin: 10px 0 0 0; font-size: 0.7rem;
+    letter-spacing: 6px; text-transform: uppercase; font-weight: 300;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+}
+
+.bottom-dock { pointer-events: auto; display: flex; justify-content: center; width: 100%; }
+
+.grid { 
+    display: flex; flex-direction: row; justify-content: space-between;
+    width: 100%; max-width: 92%;
+    background: rgba(12, 18, 30, 0.55);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px; padding: 10px 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.card {
+    background: transparent; border: none; box-shadow: none; padding: 5px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    flex: 1; text-decoration: none; color: white;
+    -webkit-tap-highlight-color: transparent; 
+    will-change: transform, box-shadow, background-color, border-color;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.icon { 
+    font-size: 24px; margin-bottom: 4px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); 
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+}
+.card h3 { margin: 0; font-size: 0.7rem; font-weight: 400; color: #e2e8f0; letter-spacing: 0.5px; }
+.card p { display: none; }
+
+.card:active .icon { transform: scale(0.85); }
+
+/* ==========================================
+    4. 电脑端适配
+========================================== */
+@media (min-width: 768px) {
+    .planet-label { font-size: 13px; }
+    .ui-layer { padding: 5vh 40px 6vh 40px; }
+    .portal-logo { width: 180px; } 
+    p.subtitle { font-size: 0.9rem; margin-top: 15px; }
+    
+    .grid { 
+        display: grid; grid-template-columns: repeat(4, 1fr); 
+        background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;
+        border: none; box-shadow: none; padding: 0; max-width: 950px; gap: 24px;
+    }
+    .card {
+        background: rgba(12, 18, 30, 0.4);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08); border-top: 1px solid rgba(255, 255, 255, 0.2); 
+        border-radius: 20px; padding: 22px 24px;
+        flex-direction: row; align-items: center; justify-content: flex-start;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .icon { font-size: 40px; margin-bottom: 0; margin-right: 18px; transform-origin: center; }
+    .card-text { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; overflow: hidden; }
+    .card h3 { font-size: 1.15rem; margin: 0 0 5px 0; font-weight: 500; line-height: 1; }
+    .card p { display: block; font-size: 0.8rem; color: #94a3b8; margin: 0; line-height: 1.2; text-align: left; white-space: nowrap; }
+    
+    .card:hover {
+        transform: translateY(-8px); background-color: rgba(20, 30, 50, 0.75);
+        border-color: rgba(56, 189, 248, 0.5); 
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.15);
+    }
+    .card:active { transform: translateY(-2px) scale(0.98); }
+    .card:hover .icon { transform: scale(1.1); } 
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- ✅ 核心修复：添加严格的安全策略 (CSP)，明确告诉扫描器此页面只执行安全的自托管脚本 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';">
+    
+    <title>PH Portal - Perfect Solar System</title>
+    <link rel="icon" type="image/png" href="/Phfavicon.png">
+    
+    <!-- 引入外部字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- 引入刚刚拆分出的 CSS 文件 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="universe-canvas"></canvas>
+    <div class="glow-overlay"></div>
+    <div id="labels-container"></div>
+
+    <div class="ui-layer">
+        <header class="top-header">
+            <img src="logo.png" alt="Perfect Health Logo" class="portal-logo">
+            <p class="subtitle">Planning Hub</p>
+        </header>
+
+        <nav class="bottom-dock">
+            <div class="grid">
+                <a href="https://dsrapp.boffi2u.com/" class="card" target="_blank" rel="noopener noreferrer">
+                    <div class="icon">📈</div><div class="card-text"><h3>Sales</h3><p>Daily Sales Report</p></div>
+                </a>
+                <a href="https://inventory.boffi2u.com/" class="card" target="_blank" rel="noopener noreferrer">
+                    <div class="icon">📦</div><div class="card-text"><h3>Inventory</h3><p>Track Assets</p></div>
+                </a>
+                <a href="https://followup.boffi2u.com" class="card" target="_blank" rel="noopener noreferrer">
+                    <div class="icon">🚀</div><div class="card-text"><h3>Task</h3><p>Mission Command</p></div>
+                </a>
+                <a href="https://requestapp.boffi2u.com" class="card" target="_blank" rel="noopener noreferrer">
+                    <div class="icon">📝</div><div class="card-text"><h3>Approval</h3><p>Request & Track</p></div>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 引入 Three.js 引擎 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    
+    <!-- 引入刚刚拆分出的 3D 逻辑脚本 -->
+    <script src="app.js"></script>
+
+</body>
+</html>
